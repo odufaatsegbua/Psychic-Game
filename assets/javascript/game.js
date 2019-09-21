@@ -24,25 +24,10 @@ var randomLetter = possibleLetters[Math.floor(Math.random()*possibleLetters.leng
 console.log(randomLetter);
 guessesLeftText.innerText = guessesLeft;
 }
-// once page loads, the game starts
+// This code will reload the page so the game can start \\
 document.addEventListener("DOMContentLoaded", function() {
 gameStart();
 });
-
-// // Now I'm creating the functions that will update each variable after user guesses 
-// // updateGuesses, updateGuessesLeft, updateUserGuessesSoFar \\ 
-// var updateGuessesLeft = function() {
-//     document.querySelector("#guesses-left").innerHTML = guessesLeft;
-//   };
-
-// var updateGuessesSoFar = function() {
-//     // Here we take the guesses the user has tried -- then display it as letters separated by commas.
-//     document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(", ");
-//   };
-
-
-
-
 
 // //listen to user input
 //  // onkeyup() <==== Most code goes in this function
@@ -71,31 +56,16 @@ else if (userGuess === computerGuess && guessesLeft > 0) {
 
 //if guesses left === 0 game lost
     //add one to games lost
+    else if (guessesLeft === 0) {
+        losses++;
+        alert("TRY AGAIN!!");
+        gameStart();
+      }
 
 // resest game
     //get computer to select another random letter
     //reset guesses left
     //KEEP games won and games lost
 
-    var reset = function() {
-        guessesLeft = 9;
-        guessedLetters = [];
-        updateLetterToGuess();
-        updateGuessesLeft();
-        updateGuessesSoFar();
-      };
-
-    updateLetterToGuess();
-    updateGuessesLeft();
-
-
-
-
-
-
-//     var updateGuessesSoFar = function() {
-//         // Here we take the guesses the user has tried -- then display it as letters separated by commas.
-//         document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(", ");
-//       };
-      
-
+    reset();
+  }
