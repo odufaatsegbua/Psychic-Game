@@ -1,10 +1,10 @@
-// First I'm going to set all my variables to 0 \\
+// First I'm going to set my variables to zero \\
 var wins = 0;
 var losses = 0;
-var guessesLeft = 0;
-var yourGuess = 0;
+var guessesLeft = 9;
+var userGuessesSoFar = null;
 
-// Now I'm going to create an array of all the letters in the alphabet since this is a random guess \\
+// Now creating an array of all the letters user can guess \\
 var possibleLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
 
@@ -13,20 +13,59 @@ var wins = document.getElementById("wins");
 var losses = document.getElementById("losses");
 var guessesLeft = document.getElementById("guessesLeft");
 
-//computer select random letter
-    //Math.random()
- 
+// Reset game to start \\
+function gameStart() {
+winsText.innerText = wins;
+lossesText.innerText = losses;
+
+//Now I'm setting the function for user to select random letter \\
+//Math.random()
 var randomLetter = possibleLetters[Math.floor(Math.random()*possibleLetters.length)];
-
 console.log(randomLetter);
-//listen to user input
-    // onkeyup() <==== Most code goes in this function
+guessesLeftText.innerText = guessesLeft;
+}
+// once page loads, the game starts
+document.addEventListener("DOMContentLoaded", function() {
+gameStart();
+});
 
-//compare user input to computer letter
-    // if (userGuess === computerGuess) <=== Needs to be in onkeyup function
+// // Now I'm creating the functions that will update each variable after user guesses 
+// // updateGuesses, updateGuessesLeft, updateUserGuessesSoFar \\ 
+// var updateGuessesLeft = function() {
+//     document.querySelector("#guesses-left").innerHTML = guessesLeft;
+//   };
+
+// var updateGuessesSoFar = function() {
+//     // Here we take the guesses the user has tried -- then display it as letters separated by commas.
+//     document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(", ");
+//   };
+
+
+
+
+
+// //listen to user input
+//  // onkeyup() <==== Most code goes in this function
+document.onkeyup = function(event) {
+var userGuess = event.key;
+
+// //compare user input to computer letter
+//     // if (userGuess === computerGuess) <=== Needs to be in onkeyup function
+//     if (letter === letterToGuess) {
+
+if (userGuess !== computerGuess && guessesLeft > 0) {
+    guessesLeft--;
+    guessesLeftText.innerText = guessesLeft;
+    }
 
 //if same game won
     // add one to games won
+
+else if (userGuess === computerGuess && guessesLeft > 0) {
+     wins++;
+    alert("WINNER!!");
+    gameStart();
+    }
 
 //if diff minus one from guesses left
 
@@ -37,3 +76,26 @@ console.log(randomLetter);
     //get computer to select another random letter
     //reset guesses left
     //KEEP games won and games lost
+
+    var reset = function() {
+        guessesLeft = 9;
+        guessedLetters = [];
+        updateLetterToGuess();
+        updateGuessesLeft();
+        updateGuessesSoFar();
+      };
+
+    updateLetterToGuess();
+    updateGuessesLeft();
+
+
+
+
+
+
+//     var updateGuessesSoFar = function() {
+//         // Here we take the guesses the user has tried -- then display it as letters separated by commas.
+//         document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(", ");
+//       };
+      
+
