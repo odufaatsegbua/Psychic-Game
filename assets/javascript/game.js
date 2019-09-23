@@ -3,26 +3,27 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 var userGuessesSoFar = null;
+var randomLetter;
 
 // Now creating an array of all the letters user can guess \\
 var possibleLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
 
 // Now I'm setting the target variable IDs in HTML\\
-var wins = document.getElementById("wins");
-var losses = document.getElementById("losses");
-var guessesLeft = document.getElementById("guessesLeft");
+var winsText = document.getElementById("wins");
+var lossesText = document.getElementById("losses");
+var guessesLeftText = document.getElementById("guessesLeft");
 
 // Reset game to start \\
 function gameStart() {
-winsText.innerText = wins;
-lossesText.innerText = losses;
-
+winsText.innerText = "Wins: " + wins;
+lossesText.innerText = "Losses: "+ losses;
+guessesLeft = 9;
 //Now I'm setting the function for user to select random letter \\
 //Math.random()
-var randomLetter = possibleLetters[Math.floor(Math.random()*possibleLetters.length)];
+randomLetter = possibleLetters[Math.floor(Math.random()*possibleLetters.length)];
 console.log(randomLetter);
-guessesLeftText.innerText = guessesLeft;
+guessesLeftText.innerText = "Guesses Left: "+guessesLeft;
 }
 // This code will reload the page so the game can start \\
 document.addEventListener("DOMContentLoaded", function() {
@@ -38,15 +39,15 @@ var userGuess = event.key;
 //     // if (userGuess === computerGuess) <=== Needs to be in onkeyup function
 //     if (letter === letterToGuess) {
 
-if (userGuess !== computerGuess && guessesLeft > 0) {
+if (userGuess !== randomLetter && guessesLeft > 0) {
     guessesLeft--;
-    guessesLeftText.innerText = guessesLeft;
+    guessesLeftText.innerText = "Guesses Left: "+guessesLeft;1
     }
 
 //if same game won
     // add one to games won
 
-else if (userGuess === computerGuess && guessesLeft > 0) {
+else if (userGuess === randomLetter && guessesLeft > 0) {
      wins++;
     alert("WINNER!!");
     gameStart();
@@ -67,5 +68,4 @@ else if (userGuess === computerGuess && guessesLeft > 0) {
     //reset guesses left
     //KEEP games won and games lost
 
-    reset();
   }
