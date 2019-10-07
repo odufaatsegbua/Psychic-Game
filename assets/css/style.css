@@ -1,0 +1,31 @@
+body {
+    background-image: url(../images/question.gif);
+}
+
+.mainContent {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 960px;
+}
+
+.mainHeader {
+font-family: 'Source Code Pro', monospace;
+font-size: 50px;
+color: #01DF3A;
+}
+
+.header {
+    font-family: 'Play', sans-serif;
+    font-size: 40px;
+    color: black;
+}
+
+p {
+    font-size: 16px;
+    font-family: 'Play', sans-serif;
+
+}
+
